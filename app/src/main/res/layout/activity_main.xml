@@ -34,10 +34,9 @@
         app:navGraph="@navigation/mobile_navigation" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/call_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:onClick="call_Button"
         android:text="전화걸기"
         android:textAlignment="center"
@@ -45,7 +44,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="OnClick" />
+        app:layout_constraintTop_toTopOf="parent"   />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

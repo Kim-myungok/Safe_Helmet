@@ -3,16 +3,18 @@
     package="com.example.call_test_page">
 
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.DIAL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_main_1"
-        android:label="safe_helmet"
+        android:label="Call_test_page"
         android:roundIcon="@mipmap/ic_main_1_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Call_test_page">
-        <activity
-            android:name="com.example.call_test_page.MainActivity"
+        <activity android:name="com.example.call_test_page.MainActivity"
             android:label="safe_helmet">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
