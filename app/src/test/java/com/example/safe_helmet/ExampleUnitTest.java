@@ -1,4 +1,4 @@
-package com.example.call_test_page;
+package com.example.safe_helmet;
 
 import org.junit.Test;
 

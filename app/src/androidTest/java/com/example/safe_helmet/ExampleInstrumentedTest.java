@@ -1,4 +1,4 @@
-package com.example.call_test_page;
+package com.example.safe_helmet;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.call_test_page", appContext.getPackageName());
+        assertEquals("com.example.safe_helmet", appContext.getPackageName());
     }
 }
