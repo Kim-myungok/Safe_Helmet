@@ -7,6 +7,43 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <include layout="@layout/toolbar_main" />
+
+    <TextView
+        android:id="@+id/bluetooth"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/shape_blue_box"
+        android:gravity="center"
+        android:text="블루투스 페어링\n[Y/N]"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/include3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/battery"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="220dp"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/shape_green_box"
+        android:gravity="center"
+        android:text="배터리 용량\n[%]"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/include3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
     <EditText
         android:id="@+id/editTextPhoneNo"
         android:layout_width="fill_parent"
