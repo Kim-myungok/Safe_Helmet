@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Setting</string>
+    <!-- Settings Activity Title -->
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="message">Messages</string>
+
+</resources>
