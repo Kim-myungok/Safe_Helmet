@@ -1,5 +1,5 @@
 
-// Include Libraries  bl
+// Include Libraries  bt+vib
 #include "Arduino.h"
 #include "BLEHM10.h"
 
@@ -7,6 +7,7 @@
 // Pin Definitions
 #define BLEHM10_PIN_TXD	11
 #define BLEHM10_PIN_RXD	10
+#define VIBRATIONSENSOR_5V_PIN_2	2
 
 
 
@@ -61,6 +62,10 @@ void loop()
     blehm10.println("PUT YOUR SENSOR DATA HERE");
 
     }
+    else if(menuOption == '2')
+    {
+    // Disclaimer: The Fast Vibration Sensor Switch (Easy to trigger) is in testing and/or doesn't have code, therefore it may be buggy. Please be kind and report any bugs you may find.
+    }
     
     if (millis() - time0 > timeout)
     {
@@ -78,6 +83,7 @@ char menu()
 
     Serial.println(F("\nWhich component would you like to test?"));
     Serial.println(F("(1) HM-10 BLE Bluetooth 4.0"));
+    Serial.println(F("(2) Fast Vibration Sensor Switch (Easy to trigger)"));
     Serial.println(F("(menu) send anything else or press on board reset button\n"));
     while (!Serial.available());
 
@@ -90,6 +96,8 @@ char menu()
             
             if(c == '1') 
     			Serial.println(F("Now Testing HM-10 BLE Bluetooth 4.0"));
+    		else if(c == '2') 
+    			Serial.println(F("Now Testing Fast Vibration Sensor Switch (Easy to trigger) - note that this component doesn't have a test code"));
             else
             {
                 Serial.println(F("illegal input!"));
