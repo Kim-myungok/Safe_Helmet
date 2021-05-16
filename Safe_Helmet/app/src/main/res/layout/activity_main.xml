@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
+
+    <include layout="@layout/toolbar_main" />
+
+    <!--    android:background="@drawable/ic_bluetooth"-->
+
+    <Button
+        android:id="@+id/bluetooth"
+        android:layout_width="324dp"
+        android:layout_height="202dp"
+        android:layout_marginTop="108dp"
+        android:checkable="true"
+        android:clickable="true"
+        android:gravity="center"
+        android:shadowColor="#FFFFFF"
+        android:text="블루투스\n[ Y / N ]"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        app:backgroundTint="@android:color/holo_green_light"
+        app:icon="@drawable/ic_bluetooth"
+
+        app:iconGravity="textEnd"
+        app:iconSize="100dp"
+
+        app:iconTint="#FFFFFF"
+        app:iconTintMode="src_in"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="#FFFFFF"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/battery"
+        android:layout_width="324dp"
+        android:layout_height="202dp"
+        android:layout_marginTop="324dp"
+
+        android:gravity="center"
+        android:text="배터리\n(  %  )"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        app:backgroundTint="@android:color/holo_orange_light"
+        app:icon="@drawable/ic_battery_unknown"
+        app:iconGravity="textEnd"
+        app:iconSize="100dp"
+        app:iconTint="#FFFFFF"
+        app:iconTintMode="src_in"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+<!--    <Button-->
+<!--        android:id="@+id/bluetooth_button"-->
+<!--        android:layout_width="324dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="550dp"-->
+<!--        android:text="버튼"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.517"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        tools:ignore="MissingConstraints" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
