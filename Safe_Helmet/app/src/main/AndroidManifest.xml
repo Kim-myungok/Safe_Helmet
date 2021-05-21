@@ -11,6 +11,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_1"
@@ -18,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_1_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Safe_Helmet">
-        <activity android:name=".BluetoothActivity"></activity>
+        <activity android:name=".BluetoothCommunication"></activity>
+        <activity android:name=".ConnectBluetoothActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +32,6 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/app_sub_name" />
-            android:theme="@style/Theme.Settings">
     </application>
 
 </manifest>
