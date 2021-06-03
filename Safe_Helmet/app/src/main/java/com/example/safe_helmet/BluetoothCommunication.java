@@ -204,7 +204,6 @@ public class BluetoothCommunication extends AppCompatActivity {
                                             textView_connection_status.setText("블루투스 연결 상태 : 정상");
                                             textView_connection_explaination.setText("블루투스 기기와 연결되었습니다.");
                                             startActivity(new Intent(BluetoothCommunication.this, MainActivity.class));
-                                            //Toast.makeText(getApplicationContext(), "블루투스 기기와 연결되었습니다.", Toast.LENGTH_LONG).show();
                                         }
                                         // 1 입력 받을 때
                                         else {
@@ -213,7 +212,6 @@ public class BluetoothCommunication extends AppCompatActivity {
 
                                                     linearLayout_setcolor.setBackgroundColor(Color.rgb(243,243,255));
                                             textView_connection_explaination.setText(Integer.toString(byteAvailabe));
-                                            Toast.makeText(MainActivity.mContext, "sensor : "+byteAvailabe, Toast.LENGTH_SHORT).show();
                                             MainActivity.BT_DATA = true;
                                             if (MainActivity.BT_DATA) {
                                                 MainActivity.Settings_Data_Load();
@@ -237,14 +235,11 @@ public class BluetoothCommunication extends AppCompatActivity {
                                                     String sms = MainActivity.message_text.toString();
                                                     try {
                                                         //전송
-                                                        //Toast.makeText(getApplicationContext(), phone_num+"\n"+sms, Toast.LENGTH_LONG).show();              //test
                                                         SmsManager smsManager = SmsManager.getDefault();
                                                         smsManager.sendTextMessage(MainActivity.phone_num_list[i], null, sms, null, null);
-                                                        //Toast.makeText(getApplicationContext(), Arrays.toString(message_text), Toast.LENGTH_LONG).show();
                                                         Toast.makeText(getApplicationContext(), "전송 완료 되었습니다", Toast.LENGTH_LONG).show();
                                                     } catch (Exception e) {
                                                         Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
-                                                        //Toast.makeText(getApplicationContext(), "SMS faild, please try again later!", Toast.LENGTH_LONG).show();
                                                         e.printStackTrace();
                                                     }
                                                 }
