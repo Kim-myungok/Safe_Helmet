@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SensorActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity = "center"
+        android:textSize ="40sp"
+        android:text="충격센서(감도)" />
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_gravity = "center"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="전송"/>
+
+    <TextView
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:textSize ="50sp"
+        android:gravity="center_horizontal"
+        android:hint="충격감지" />
+
+</LinearLayout>

@@ -47,6 +47,7 @@ import java.util.UUID;
 public class MainActivity extends AppCompatActivity {
     Button bluetooth_btn;
     Button battery_btn;
+    //Button sensor_btn;
 
     Toolbar myToolbar;                          //툴바 선언
     public static Context mContext;             //MainActivity를 가르키는 context
@@ -55,14 +56,13 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.CALL_PHONE,
             Manifest.permission.SEND_SMS,
             Manifest.permission.READ_PHONE_NUMBERS,
-            Manifest.permission.BLUETOOTH,
-            Manifest.permission.BLUETOOTH_ADMIN,
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
     };
 
     String[] phone_num_list;
     String message_text;
+    static int BT_DATA = 0;
 
     boolean bluetooth = true;                   //충격센서의 충격 여부
     int battery_percent = -1;
@@ -77,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
 
         myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         bluetooth_btn = (Button)findViewById(R.id.bluetooth);
+        //sensor_btn = (Button)findViewById(R.id.sensor);
         mContext = this;
 
         bluetooth_btn.setOnClickListener(new Button.OnClickListener() {
@@ -87,15 +87,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ConnectBluetoothActivity.class);
                 startActivity(intent);
-
             }
         });
+//        sensor_btn.setOnClickListener(new Button.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent_sensor = new Intent(MainActivity.this, SensorActivity.class);
+//                startActivity(intent_sensor);
+//            }
+//        });
 
 
         //충격센서의 충격에 따라 Call_SOS() 실행
-        if (!bluetooth) {
+        if (BT_DATA!=0) {
             Settings_Data_Load();
             Call_SOS();
+            BT_DATA = 0;
             for(int i=0; i<phone_num_list.length; i++){
                 Message_Send(phone_num_list[i]);
             }

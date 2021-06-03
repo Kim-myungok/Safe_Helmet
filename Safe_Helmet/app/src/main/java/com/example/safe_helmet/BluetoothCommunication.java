@@ -1,6 +1,7 @@
 package com.example.safe_helmet;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -31,6 +32,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -38,6 +40,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import app.akexorcist.bluetotohspp.library.BluetoothSPP;
 
 public class BluetoothCommunication extends AppCompatActivity {
 
@@ -48,6 +52,7 @@ public class BluetoothCommunication extends AppCompatActivity {
     private ListView listView_alarm_log;
     private Button button_pairing;
     private TextView textView_alarm_log;
+    private BluetoothSPP bt;
 
     // 일반 변수 객체 선언
     private List<String> list;
@@ -64,14 +69,14 @@ public class BluetoothCommunication extends AppCompatActivity {
     private PowerManager.WakeLock wakeLock;
 
     Toolbar myToolbar;                          //툴바 선언
-
+    public int byteAvailabe;
     @SuppressLint("InvalidWakeLockTag")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth_communication);
 
-
+        bt = new BluetoothSPP(this); //Initializing
         myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -97,7 +102,8 @@ public class BluetoothCommunication extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(BluetoothCommunication.this, ConnectBluetoothActivity.class));
+                startActivity(new Intent(BluetoothCommunication.this, MainActivity.class));
+                Toast.makeText(getApplicationContext(), "블루투스 기기와 연결되었습니다.", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -112,17 +118,17 @@ public class BluetoothCommunication extends AppCompatActivity {
         // UI 변경은 핸들러에서 처리
         @SuppressLint("HandlerLeak") final Handler handler = new Handler() {
             public void handleMessage(Message msg) {
-                // 연결 되지 않았을 때
-                linearLayout_setcolor.setBackgroundColor(Color.rgb(179,179,179));
-                textView_connection_status.setTextColor(Color.RED);
-                textView_connection_status.setText("블루투스 연결 상태 : 불량");
-                textView_connection_explaination.setText("블루투스 디바이스와 연결 상태가 좋지 않습니다.\n" +
-                        "계속해서 연결 상태가 좋지 않을 경우 아래 버튼을 눌러 다시 페어링을 시도하세요.");
-
-                // 버튼 보이기
+//                // 연결 되지 않았을 때
+//                linearLayout_setcolor.setBackgroundColor(Color.rgb(179,179,179));
+//                textView_connection_status.setTextColor(Color.RED);
+//                textView_connection_status.setText("블루투스 연결 상태 : 불량");
+//                textView_connection_explaination.setText("블루투스 디바이스와 연결 상태가 좋지 않습니다.\n" +
+//                        "계속해서 연결 상태가 좋지 않을 경우 아래 버튼을 눌러 다시 페어링을 시도하세요.");
+//
+//                // 버튼 보이기
                 button_pairing.setVisibility(View.VISIBLE);
-                listView_alarm_log.setVisibility(View.INVISIBLE);
-                textView_alarm_log.setVisibility(View.INVISIBLE);
+//                listView_alarm_log.setVisibility(View.INVISIBLE);
+//                textView_alarm_log.setVisibility(View.INVISIBLE);
             }
         };
 
@@ -139,18 +145,19 @@ public class BluetoothCommunication extends AppCompatActivity {
                 // 인터럽트 호출 전까지 반복
                 while(!Thread.currentThread().isInterrupted()) {
                     // 수신 데이터 확인 변수
-                    int byteAvailabe = 0;
+                    byteAvailabe = 0;
 
                     // 문자열 개수를 받아옴
                     try {
                         byteAvailabe = ConnectBluetoothActivity.inputStream.available();
+                        String BTdata = Integer.toString(byteAvailabe);
                     }
                     catch (IOException e) {
                         e.printStackTrace();
                     }
 
                     Log.d("Thread", "From Bluetooth Data : " + byteAvailabe);
-
+                    SensorActivity.read = byteAvailabe;
                     // 데이터가 수신된 경우
                     if(byteAvailabe > 0) {
                         // 데이터 크기만큼 바이트 배열 생성
@@ -158,6 +165,9 @@ public class BluetoothCommunication extends AppCompatActivity {
                         // 바이트 배열 크기만큼 읽어옴
                         try {
                             ConnectBluetoothActivity.inputStream.read(packetByte);
+                            //다녀와서
+                            MainActivity.BT_DATA = byteAvailabe;
+
                         }
                         catch (IOException e) {
                             e.printStackTrace();
@@ -180,13 +190,14 @@ public class BluetoothCommunication extends AppCompatActivity {
                                 readBufferPosition = 0;
 
                                 final PendingIntent pendingIntent = PendingIntent.getActivity(BluetoothCommunication.this, 0,
-                                        new Intent(getApplicationContext(), BluetoothCommunication.class), PendingIntent.FLAG_UPDATE_CURRENT);
+                                        new Intent(getApplicationContext(), MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
                                 handler.post(new Runnable() {
                                     // 알림 객체 선언
                                     NotificationManager notificationManager;
                                     Notification.Builder builder;
 
+                                    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
                                     @Override
                                     public void run() {
                                         // 버튼 숨기기
@@ -199,18 +210,22 @@ public class BluetoothCommunication extends AppCompatActivity {
                                             linearLayout_setcolor.setBackgroundColor(Color.rgb(185,255,198));
                                             textView_connection_status.setTextColor(Color.BLACK);
                                             textView_connection_status.setText("블루투스 연결 상태 : 정상");
-                                            textView_connection_explaination.setText("블루투스 디바이스와 성공적으로 페어링했습니다.");
+                                            textView_connection_explaination.setText("블루투스 기기와 연결되었습니다.");
+                                            startActivity(new Intent(BluetoothCommunication.this, MainActivity.class));
+                                            //Toast.makeText(getApplicationContext(), "블루투스 기기와 연결되었습니다.", Toast.LENGTH_LONG).show();
                                         }
                                         // 1 입력 받을 때
                                         else {
                                             // 현재 시간을 받아옴
-                                            long now = System.currentTimeMillis();
-                                            Date date = new Date(now);
-                                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM월 dd일 - HH시 mm분 ss초");
-                                            String nowDate = simpleDateFormat.format(date);
+                                            //long now = System.currentTimeMillis();
+                                            //Date date = new Date(now);
+                                            //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM월 dd일 - HH시 mm분 ss초");
+                                            //String nowDate = simpleDateFormat.format(date);
+                                            String nowDate = "센서값 : "+byteAvailabe;
 
-                                            linearLayout_setcolor.setBackgroundColor(Color.rgb(243,197,197));
-                                            textView_connection_explaination.setText("센서가 감지되었습니다.");
+                                                    linearLayout_setcolor.setBackgroundColor(Color.rgb(243,243,255));
+                                            textView_connection_explaination.setText(Integer.toString(byteAvailabe));
+                                            Toast.makeText(MainActivity.mContext, "sensor : "+byteAvailabe, Toast.LENGTH_SHORT).show();
 
                                             // 알림 객체 설정
                                             builder = new Notification.Builder(BluetoothCommunication.this)
@@ -230,19 +245,6 @@ public class BluetoothCommunication extends AppCompatActivity {
                                             list.add(log_num + ". " + nowDate);
                                             arrayAdapter.notifyDataSetChanged();
                                             log_num++;
-
-                                            // 진동 객체 설정
-                                            Vibrator vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
-                                            vibrator.vibrate(1000);
-
-                                            // 알림 소리 설정
-                                            Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                                            Ringtone ringtone = RingtoneManager.getRingtone(getApplicationContext(), uri);
-                                            ringtone.play();
-
-                                            // WakeLock 깨우기 및 해제
-                                            wakeLock.acquire();
-                                            wakeLock.release();
                                         }
                                     }
                                 });

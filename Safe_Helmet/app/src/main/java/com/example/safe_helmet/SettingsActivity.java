@@ -19,7 +19,7 @@ import java.util.List;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    Toolbar myToolbar;                          //툴바 선언
+    //Toolbar myToolbar;                          //툴바 선언
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +28,9 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.settings_activity);
 
 
-        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        //setSupportActionBar(myToolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -49,26 +49,26 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     /*   toolbar_setting   */
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //return super.onCreateOptionsMenu(menu);
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_blue, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //return super.onOptionsItemSelected(item);
-        switch (item.getItemId()) {
-            case R.id.setting_btn:  //설정화면으로 이동
-                Intent intent_setting = new Intent(getApplicationContext(), SettingsActivity.class);
-                startActivityForResult(intent_setting, 101);
-                return true;
-            case R.id.home_btn:  //홈화면으로 이동
-                Intent intent_home = new Intent(getApplicationContext(), MainActivity.class);
-                startActivityForResult(intent_home, 101);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        //return super.onCreateOptionsMenu(menu);
+//        MenuInflater menuInflater = getMenuInflater();
+//        menuInflater.inflate(R.menu.menu_blue, menu);
+//        return true;
+//    }
+//
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        //return super.onOptionsItemSelected(item);
+//        switch (item.getItemId()) {
+//            case R.id.setting_btn:  //설정화면으로 이동
+//                Intent intent_setting = new Intent(getApplicationContext(), SettingsActivity.class);
+//                startActivityForResult(intent_setting, 101);
+//                return true;
+//            case R.id.home_btn:  //홈화면으로 이동
+//                Intent intent_home = new Intent(getApplicationContext(), MainActivity.class);
+//                startActivityForResult(intent_home, 101);
+//                return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
 }

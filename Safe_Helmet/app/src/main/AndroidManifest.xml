@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="8" />
 
     <uses-permission android:name="android.permission.VIBRATE" />
 
@@ -20,7 +21,8 @@
         android:roundIcon="@mipmap/ic_launcher_1_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Safe_Helmet">
-        <activity android:name=".BluetoothCommunication"></activity>
+        <activity android:name=".SensorActivity"></activity>
+        <activity android:name=".BluetoothCommunication" />
         <activity android:name=".ConnectBluetoothActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
