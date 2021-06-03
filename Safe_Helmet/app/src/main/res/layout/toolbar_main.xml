@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/my_toolbar"
+    app:contentInsetStart="0dp"
+    android:background="@color/blue_1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/Toolbar_Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Safe Helmet"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:gravity="center" ></TextView>
+
+</androidx.appcompat.widget.Toolbar>

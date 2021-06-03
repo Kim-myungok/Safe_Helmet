@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BluetoothCommunication">
+
+    <include layout="@layout/toolbar_main" />
+
+    <!-- 블루투스 통신 화면-->
+    <LinearLayout
+        android:id="@+id/linearlayout_setcolor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:id="@+id/textview_connection_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="블루투스 연결 상태 : "
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textview_connection_explaination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="디바이스 연결 설명"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/button_pairing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="페어링 하기" />
+
+        <TextView
+            android:id="@+id/textview_alarm_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:text=" ▣ 알림 기록"
+            android:textColor="#000000"
+            android:textSize="15dp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fillViewport="true">
+
+            <ListView
+                android:id="@+id/listview_alarm_log"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></ListView>
+        </ScrollView>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
