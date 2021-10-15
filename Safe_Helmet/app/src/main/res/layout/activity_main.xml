@@ -7,9 +7,7 @@
     android:background="#FFFFFF"
     tools:context=".MainActivity">
 
-    <include
-        android:id="@+id/include2"
-        layout="@layout/toolbar_main" />
+    <include layout="@layout/toolbar_main" />
 
     <!--    android:background="@drawable/ic_bluetooth"-->
     <LinearLayout

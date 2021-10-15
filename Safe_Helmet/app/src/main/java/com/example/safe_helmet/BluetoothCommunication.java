@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -16,15 +15,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
-import android.os.Vibrator;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
@@ -40,9 +36,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import app.akexorcist.bluetotohspp.library.BluetoothSPP;
@@ -222,7 +216,7 @@ public class BluetoothCommunication extends AppCompatActivity {
                                                         toast.show();
                                                         // 권한 없음
                                                     } else {
-                                                        Intent call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:01072904078"));
+                                                        Intent call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:01088074074"));
                                                         startActivity(call);
                                                         // 권한 있음
                                                     }

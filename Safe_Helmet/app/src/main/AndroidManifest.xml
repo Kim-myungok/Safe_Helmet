@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.safe_helmet">
 
+        <!--    <uses-sdk-->
+        <!--        android:minSdkVersion="14"-->
+        <!--        android:targetSdkVersion="14" />-->
+
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.DIAL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
@@ -10,8 +14,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="8" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -21,6 +23,15 @@
         android:roundIcon="@mipmap/ic_launcher_1_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Safe_Helmet">
+        <service
+            android:name=".ServiceThread"
+            android:enabled="true"
+            android:exported="true"></service>
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity android:name=".BluetoothCommunication" />
         <activity android:name=".ConnectBluetoothActivity" />
         <activity android:name=".MainActivity">
