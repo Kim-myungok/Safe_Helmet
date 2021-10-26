@@ -1,4 +1,4 @@
-package com.example.safe_helmet;
+package com.save_us.safe_helmet;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -33,6 +33,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.safe_helmet.R;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -208,6 +210,7 @@ public class BluetoothCommunication extends AppCompatActivity {
                                             textView_connection_explaination.setText(Integer.toString(byteAvailabe));
                                             MainActivity.BT_DATA = true;
                                             if (MainActivity.BT_DATA) {
+                                                MainActivity.BT_DATA = false;
                                                 MainActivity.Settings_Data_Load();
                                                 int permissionCheck = ContextCompat.checkSelfPermission(BluetoothCommunication.this, Manifest.permission.CALL_PHONE);
                                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -216,7 +219,7 @@ public class BluetoothCommunication extends AppCompatActivity {
                                                         toast.show();
                                                         // 권한 없음
                                                     } else {
-                                                        Intent call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:01088074074"));
+                                                        Intent call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:01072904078"));
                                                         startActivity(call);
                                                         // 권한 있음
                                                     }
@@ -237,8 +240,12 @@ public class BluetoothCommunication extends AppCompatActivity {
                                                         e.printStackTrace();
                                                     }
                                                 }
-                                                MainActivity.BT_DATA = false;
+                                                try {
+                                                    Thread.sleep( 1000 );	//5초씩 쉰다.
+                                                } catch (Exception e) {
+                                                }
                                             }
+                                            MainActivity.BT_DATA = false;
                                             // 알림 객체 설정
                                             builder = new Notification.Builder(BluetoothCommunication.this)
                                                     .setSmallIcon(R.drawable.ic_launcher_background) // 아이콘 설정

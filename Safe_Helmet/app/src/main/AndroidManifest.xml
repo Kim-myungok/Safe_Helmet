@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.safe_helmet">
-
-        <!--    <uses-sdk-->
-        <!--        android:minSdkVersion="14"-->
-        <!--        android:targetSdkVersion="14" />-->
-
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.safe_helmet" >
+    <!-- <uses-sdk -->
+    <!-- android:minSdkVersion="14" -->
+    <!-- android:targetSdkVersion="14" /> -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.DIAL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
@@ -22,19 +21,29 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_1_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Safe_Helmet">
+        android:theme="@style/Theme.Safe_Helmet" >
+        <activity
+            android:name="com.save_us.safe_helmet.GoogleMaps"
+            android:exported="false"
+            tools:ignore="MissingClass" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDY_xRG2gUJBKaJyBWWZWAvCHpBlvEjZxo" />
+
         <service
-            android:name=".ServiceThread"
+            android:name="com.save_us.safe_helmet.ServiceThread"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"
+            tools:ignore="Instantiatable" />
         <service
-            android:name=".MyService"
+            android:name="com.save_us.safe_helmet.MyService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".BluetoothCommunication" />
-        <activity android:name=".ConnectBluetoothActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.save_us.safe_helmet.BluetoothCommunication" />
+        <activity android:name="com.save_us.safe_helmet.ConnectBluetoothActivity" />
+        <activity android:name="com.save_us.safe_helmet.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,7 +51,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.save_us.safe_helmet.SettingsActivity"
             android:label="@string/app_sub_name" />
     </application>
 

@@ -1,4 +1,4 @@
-package com.example.safe_helmet;
+package com.save_us.safe_helmet;
 
 import org.junit.Test;
 

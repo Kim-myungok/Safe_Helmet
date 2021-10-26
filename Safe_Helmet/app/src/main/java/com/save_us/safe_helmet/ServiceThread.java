@@ -1,4 +1,4 @@
-package com.example.safe_helmet;
+package com.save_us.safe_helmet;
 
 import android.os.Handler;
 
@@ -20,6 +20,7 @@ public class ServiceThread extends Thread {
             try {
                 Thread.sleep( 500 );	//5초씩 쉰다.
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

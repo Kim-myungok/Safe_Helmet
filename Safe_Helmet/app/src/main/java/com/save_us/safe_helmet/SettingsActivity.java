@@ -1,4 +1,4 @@
-package com.example.safe_helmet;
+package com.save_us.safe_helmet;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
+
+import com.example.safe_helmet.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;

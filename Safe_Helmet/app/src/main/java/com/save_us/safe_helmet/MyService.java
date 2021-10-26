@@ -1,4 +1,4 @@
-package com.example.safe_helmet;
+package com.save_us.safe_helmet;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -16,6 +16,8 @@ import android.os.Handler;
 import android.os.IBinder;
 
 import androidx.core.app.NotificationCompat;
+
+import com.example.safe_helmet.R;
 
 import java.util.Calendar;
 import java.util.Date;
