@@ -170,7 +170,7 @@ public class MainActivity<ViewLatitude> extends AppCompatActivity
         });
 
 //        ViewGPS = (TextView)findViewById(R.id.ViewGPS);
-//        ViewGPS.setText("위치정보 미수신중");
+//
 //
 //        ToggleBtnGPS = (ToggleButton) findViewById(R.id.toggle_GPS);
 //
@@ -330,18 +330,16 @@ public class MainActivity<ViewLatitude> extends AppCompatActivity
                 getCurrentAddress(location.getLatitude(), location.getLongitude());
 
                 String markerTitle = getCurrentAddress(currentPosition);
-                String markerSnippet = "                               위도, 경도 = " + String.valueOf(location.getLatitude())
+                String markerSnippet = "\t\t\t\t\t\t\t\t위도, 경도 = " + String.valueOf(location.getLatitude())
                         + ", " + String.valueOf(location.getLongitude());
-
                 Log.d(TAG, markerSnippet);
-
 
                 //현재 위치에 마커 생성하고 이동
                 setCurrentLocation(location, markerTitle, markerSnippet);
 
                 mCurrentLocatiion = location;
+                Log.d(TAG,"\t\t\t\t\t\t\t\tSpeed= "+ String.valueOf((int)location.getSpeed()) + " (Km/h)");
             }
-
 
         }
 
@@ -375,7 +373,6 @@ public class MainActivity<ViewLatitude> extends AppCompatActivity
         Date date = new Date(now);
         SimpleDateFormat DF = new SimpleDateFormat("yy년 MM월 dd일 hh:mm:ss");
         Log.d(TAG, DF.format(date)+"    ||   현재주소: "+address.getAddressLine(0).toString());
-
     }
 
 

@@ -71,14 +71,7 @@
             android:layout_height="126dp"
             tools:context=".MapsActivity" />
 
-        <TextView
-            android:id="@+id/ViewGPS"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="GPS 에 수신된 현재위치"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-<!--        <TextView-->
+        <!--        <TextView-->
 <!--            android:id="@+id/t2"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"-->
@@ -94,23 +87,6 @@
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"-->
 <!--            android:text="" />-->
-        <TextView
-            android:id="@+id/ViewRst"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_orange_light"
-            android:text="결과창"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <ToggleButton
-            android:id="@+id/toggle_GPS"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textOff="위치정보수신시작"
-            android:textOn="위치정보수신종료"/>
-
-
-
 
     </LinearLayout>
 

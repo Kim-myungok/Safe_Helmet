@@ -22,10 +22,10 @@
         android:roundIcon="@mipmap/ic_launcher_1_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Safe_Helmet" >
-        <activity
-            android:name="com.save_us.safe_helmet.GoogleMaps"
-            android:exported="false"
-            tools:ignore="MissingClass" />
+<!--        <activity-->
+<!--            android:name="com.save_us.safe_helmet.GoogleMaps"-->
+<!--            android:exported="false"-->
+<!--            tools:ignore="MissingClass" />-->
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
