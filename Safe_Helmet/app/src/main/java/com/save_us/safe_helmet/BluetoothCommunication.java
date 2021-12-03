@@ -1,5 +1,7 @@
 package com.save_us.safe_helmet;
 
+import static java.lang.Thread.sleep;
+
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,7 +71,7 @@ public class BluetoothCommunication extends AppCompatActivity {
     private PowerManager.WakeLock wakeLock;
 
     Toolbar myToolbar;                          //툴바 선언
-    public int byteAvailabe;
+    public int byteAvailabe;                  //불루투스 송신 데이터 저장
     @SuppressLint("InvalidWakeLockTag")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -201,7 +203,7 @@ public class BluetoothCommunication extends AppCompatActivity {
                                             textView_connection_explaination.setText("블루투스 기기와 연결되었습니다.");
                                             startActivity(new Intent(BluetoothCommunication.this, MainActivity.class));
                                         }
-                                        // 1 입력 받을 때
+                                        // 0 이외의 입력 받을 때
                                         else {
 
                                             String nowDate = "센서값 : "+byteAvailabe;
@@ -211,7 +213,7 @@ public class BluetoothCommunication extends AppCompatActivity {
                                             MainActivity.BT_DATA = true;
                                             if (MainActivity.BT_DATA) {
                                                 MainActivity.BT_DATA = false;
-                                                MainActivity.Settings_Data_Load();
+                                                MainActivity.Settings_Data_Load(byteAvailabe);
                                                 int permissionCheck = ContextCompat.checkSelfPermission(BluetoothCommunication.this, Manifest.permission.CALL_PHONE);
                                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                                     if (permissionCheck == PackageManager.PERMISSION_DENIED) {
@@ -219,9 +221,15 @@ public class BluetoothCommunication extends AppCompatActivity {
                                                         toast.show();
                                                         // 권한 없음
                                                     } else {
-                                                        Intent call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:01072904078"));
+                                                        String call_number = "tel:"+MainActivity.phone_num_list[0];
+                                                        Intent call = new Intent(Intent.ACTION_CALL, Uri.parse(call_number));
                                                         startActivity(call);
                                                         // 권한 있음
+                                                        try {
+                                                            sleep(5000);
+                                                        } catch (InterruptedException e) {
+                                                            e.printStackTrace();
+                                                        }
                                                     }
                                                 }
                                                 // OS가 Marshmallow 이전일 경우 권한체크를 하지 않는다.
@@ -241,7 +249,7 @@ public class BluetoothCommunication extends AppCompatActivity {
                                                     }
                                                 }
                                                 try {
-                                                    Thread.sleep( 1000 );	//5초씩 쉰다.
+                                                    sleep( 1000 );	//5초씩 쉰다.
                                                 } catch (Exception e) {
                                                 }
                                             }
@@ -280,7 +288,7 @@ public class BluetoothCommunication extends AppCompatActivity {
 
                     try {
                         // 2초 간격으로 반복
-                        Thread.sleep(1000);
+                        sleep(1000);
                     }
                     catch (InterruptedException e) {
                         e.printStackTrace();

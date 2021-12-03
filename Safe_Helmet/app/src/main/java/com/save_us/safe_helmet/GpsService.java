@@ -17,7 +17,7 @@ import android.util.Log;
 /**
  * Created by yong on 15. 2. 12.
  */
-public class GPS_to_Speed extends Service implements LocationListener {
+public class GpsService extends Service implements LocationListener {
     private final Context mContext;
 
     // GPS 사용여부
@@ -28,7 +28,6 @@ public class GPS_to_Speed extends Service implements LocationListener {
 
     // GPS 상태값
     boolean isGetLocation = false;
-
 
     Location location;
     double lat; // 위도
@@ -44,7 +43,7 @@ public class GPS_to_Speed extends Service implements LocationListener {
 
     protected LocationManager locationManager;
 
-    public GPS_to_Speed(Context context) {
+    public GpsService(Context context) {
         this.mContext = context;
         getLocation();
     }
@@ -115,7 +114,7 @@ public class GPS_to_Speed extends Service implements LocationListener {
     // GPS OFF
     public void stopUsingGPS() {
         if (locationManager != null) {
-            locationManager.removeUpdates(GPS_to_Speed.this);
+            locationManager.removeUpdates(GpsService.this);
         } // end of if
     } // end of stopUsingGPS
 
@@ -140,7 +139,7 @@ public class GPS_to_Speed extends Service implements LocationListener {
     public void showSettingAlert() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
         alertDialog.setTitle("GPS 사용유무");
-        alertDialog.setMessage("GPS 사용해야됨, 설정 창 ㄱ?");
+        alertDialog.setMessage("GPS 사용해야됨, 설정 창으로 이동하시겠습니까?");
 
         alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
             @Override
