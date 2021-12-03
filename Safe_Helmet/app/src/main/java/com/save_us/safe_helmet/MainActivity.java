@@ -145,7 +145,7 @@ public class MainActivity<ViewLatitude> extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 /*   message test   */
-                Settings_Data_Load(TEST_DANGER);
+//                Settings_Data_Load(TEST_DANGER);
 
                 Intent intent_setting = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivityForResult(intent_setting, 101);
@@ -173,7 +173,7 @@ public class MainActivity<ViewLatitude> extends AppCompatActivity {
 
     }
 
-    /*   GPS_Info   */
+    /*   GPS_Info_Reading   */
     public static void GPS(){
         /*   위치 관련   */
         gps = new GpsService(MainActivity.mContext);
