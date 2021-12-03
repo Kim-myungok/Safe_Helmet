@@ -221,7 +221,8 @@ public class BluetoothCommunication extends AppCompatActivity {
                                                         toast.show();
                                                         // 권한 없음
                                                     } else {
-                                                        Intent call = new Intent(Intent.ACTION_CALL, Uri.parse("tel:01072904078"));
+                                                        String call_number = "tel:"+MainActivity.phone_num_list[0];
+                                                        Intent call = new Intent(Intent.ACTION_CALL, Uri.parse(call_number));
                                                         startActivity(call);
                                                         // 권한 있음
                                                         try {

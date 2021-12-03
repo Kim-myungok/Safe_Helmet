@@ -35,7 +35,7 @@
             android:layout_height="200dp"
             android:gravity="center"
             android:shadowColor="#FFFFFF"
-            android:text="블루투스\n[ Y / N ]"
+            android:text="블루투스"
             android:textColor="@color/white"
             android:textSize="30dp"
             app:backgroundTint="@android:color/holo_green_light"
@@ -49,11 +49,11 @@
             tools:ignore="MissingConstraints" />
 
         <Button
-            android:id="@+id/battery"
+            android:id="@+id/setting"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:gravity="center"
-            android:text="배터리\n(  %  )"
+            android:text="설정"
             android:textColor="@color/white"
             android:textSize="30dp"
             app:backgroundTint="@android:color/holo_orange_light"

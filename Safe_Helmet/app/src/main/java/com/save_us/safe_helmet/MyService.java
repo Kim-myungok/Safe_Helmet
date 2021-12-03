@@ -57,13 +57,14 @@ public class MyService extends Service {
         thread.stopForever();
     }
 
+    @SuppressLint("HandlerLeak")
     public class myServiceHandler extends Handler {
         @Override
         public void handleMessage(android.os.Message msg) {
             NotificationManager notificationManager = (NotificationManager) getSystemService( Context.NOTIFICATION_SERVICE );
             Intent intent = new Intent( MyService.this, MainActivity.class );
             intent.addFlags( Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP );
-            PendingIntent pendingIntent = PendingIntent.getActivity( MyService.this, 0, intent, PendingIntent.FLAG_ONE_SHOT );
+            @SuppressLint("UnspecifiedImmutableFlag") PendingIntent pendingIntent = PendingIntent.getActivity( MyService.this, 0, intent, PendingIntent.FLAG_ONE_SHOT );
             Uri soundUri = RingtoneManager.getDefaultUri( RingtoneManager.TYPE_NOTIFICATION );
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                 @SuppressLint("WrongConstant") NotificationChannel notificationChannel = new NotificationChannel( "my_notification", "n_channel", NotificationManager.IMPORTANCE_MAX );
