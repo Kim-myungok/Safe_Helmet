@@ -2,6 +2,7 @@ package com.save_us.safe_helmet;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.widget.Toast;
 
 public class BackPressCloseHandler {
@@ -22,8 +23,12 @@ public class BackPressCloseHandler {
         if(System.currentTimeMillis() <= backKeyPressedTime + 2000){
             Intent intent = new Intent(MainActivity.mContext,MyService.class);
             activity.stopService(intent);
-            showGuide("앱이 종료됩니다.");
-            activity.finish();
+            if (Build.VERSION.SDK_INT >= 21) {
+                activity.finishAndRemoveTask();
+            } else {
+                activity.finish();
+            }
+
             toast.cancel();
         }
     }
