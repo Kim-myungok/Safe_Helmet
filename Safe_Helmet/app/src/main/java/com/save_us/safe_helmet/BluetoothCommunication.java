@@ -208,52 +208,9 @@ public class BluetoothCommunication extends AppCompatActivity {
 
                                             String nowDate = "센서값 : "+byteAvailabe;
 
-                                                    linearLayout_setcolor.setBackgroundColor(Color.rgb(243,243,255));
+                                            linearLayout_setcolor.setBackgroundColor(Color.rgb(243,243,255));
                                             textView_connection_explaination.setText(Integer.toString(byteAvailabe));
-                                            MainActivity.BT_DATA = true;
-                                            if (MainActivity.BT_DATA) {
-                                                MainActivity.BT_DATA = false;
-                                                MainActivity.Settings_Data_Load(byteAvailabe);
-                                                int permissionCheck = ContextCompat.checkSelfPermission(BluetoothCommunication.this, Manifest.permission.CALL_PHONE);
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    if (permissionCheck == PackageManager.PERMISSION_DENIED) {
-                                                        Toast toast = Toast.makeText(BluetoothCommunication.this, "권한 없음", Toast.LENGTH_SHORT);
-                                                        toast.show();
-                                                        // 권한 없음
-                                                    } else {
-                                                        String call_number = "tel:"+MainActivity.phone_num_list[0];
-                                                        Intent call = new Intent(Intent.ACTION_CALL, Uri.parse(call_number));
-                                                        startActivity(call);
-                                                        // 권한 있음
-                                                        try {
-                                                            sleep(5000);
-                                                        } catch (InterruptedException e) {
-                                                            e.printStackTrace();
-                                                        }
-                                                    }
-                                                }
-                                                // OS가 Marshmallow 이전일 경우 권한체크를 하지 않는다.
-                                                else {
-                                                }
 
-                                                for(int i=0; i<MainActivity.phone_num_list.length; i++){
-                                                    String sms = MainActivity.message_text.toString();
-                                                    try {
-                                                        //전송
-                                                        SmsManager smsManager = SmsManager.getDefault();
-                                                        smsManager.sendTextMessage(MainActivity.phone_num_list[i], null, sms, null, null);
-                                                        Toast.makeText(getApplicationContext(), "전송 완료 되었습니다", Toast.LENGTH_LONG).show();
-                                                    } catch (Exception e) {
-                                                        Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
-                                                        e.printStackTrace();
-                                                    }
-                                                }
-                                                try {
-                                                    sleep( 1000 );	//5초씩 쉰다.
-                                                } catch (Exception e) {
-                                                }
-                                            }
-                                            MainActivity.BT_DATA = false;
                                             // 알림 객체 설정
                                             builder = new Notification.Builder(BluetoothCommunication.this)
                                                     .setSmallIcon(R.drawable.ic_launcher_background) // 아이콘 설정
@@ -273,6 +230,50 @@ public class BluetoothCommunication extends AppCompatActivity {
                                             list.add(log_num + ". " + nowDate);
                                             arrayAdapter.notifyDataSetChanged();
                                             log_num++;
+                                            if (byteAvailabe != 0) {
+
+                                                MainActivity.Settings_Data_Load(byteAvailabe);
+                                                int permissionCheck = ContextCompat.checkSelfPermission(BluetoothCommunication.this, Manifest.permission.CALL_PHONE);
+                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                                    if (permissionCheck == PackageManager.PERMISSION_DENIED) {
+                                                        Toast toast = Toast.makeText(BluetoothCommunication.this, "권한 없음", Toast.LENGTH_SHORT);
+                                                        toast.show();
+                                                        // 권한 없음
+                                                    } else {
+                                                        String call_number = "tel:"+MainActivity.phone_num_list[0];
+                                                        Intent call = new Intent(Intent.ACTION_CALL, Uri.parse(call_number));
+                                                        startActivity(call);
+                                                        // 권한 있음
+                                                        try {
+                                                            sleep(5000);
+                                                        } catch (InterruptedException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                    }
+                                                    finish();
+                                                }
+                                                // OS가 Marshmallow 이전일 경우 권한체크를 하지 않는다.
+                                                else {
+                                                }
+
+                                                for(int i=0; i<MainActivity.phone_num_list.length; i++){
+                                                    String sms = MainActivity.message_text.toString();
+                                                    try {
+                                                        //전송
+                                                        SmsManager smsManager = SmsManager.getDefault();
+                                                        smsManager.sendTextMessage(MainActivity.phone_num_list[i], null, sms, null, null);
+                                                        Toast.makeText(getApplicationContext(), "전송 완료 되었습니다", Toast.LENGTH_LONG).show();
+                                                    } catch (Exception e) {
+                                                        Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
+                                                        e.printStackTrace();
+                                                    }
+                                                }
+                                                try {
+                                                    sleep( 500 );	//0.5초씩 쉰다.
+                                                } catch (Exception e) {
+                                                }
+                                            }
+                                            byteAvailabe =0;
                                         }
                                     }
                                 });
